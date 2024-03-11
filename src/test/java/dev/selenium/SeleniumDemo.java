@@ -15,33 +15,38 @@ public class SeleniumDemo {
 
     @BeforeMethod
     public void  before() {
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
 
         driver.get("https://www.selenium.dev/selenium/web/web-form.html");
     }
 
     @Test
     public void testOpenBrowser(){
+        WebElement textInput = driver.findElement(By.cssSelector("input#my-text-id"));
+        textInput.click();
 
+        WebElement passInput1 = driver.findElement(By.cssSelector("[type=password]"));
+        WebElement passInput = driver.findElement(By.xpath("//*[@type='password']"));
+        passInput.click();
+        passInput.sendKeys("ABSURD DA RABOTI");
 
-        driver.getTitle();
+        WebElement bigTextInput1 = driver.findElement(By.cssSelector("textarea"));
+        WebElement bigTextInput = driver.findElement(By.xpath("//textarea"));
+        bigTextInput.click();
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        WebElement existingText1 = driver.findElement(By.cssSelector("[value=\"Readonly input\"]"));
+        WebElement existingText = driver.findElement(By.xpath("//*[@value='Readonly input']"));
+        existingText.click();
 
-        WebElement textBox = driver.findElement(By.name("my-text"));
-        WebElement submitButton = driver.findElement(By.cssSelector("button"));
-
-        textBox.sendKeys("Selenium");
-        submitButton.click();
-
-        WebElement message = driver.findElement(By.id("message"));
-        message.getText();
+        WebElement dateClick1 = driver.findElement(By.cssSelector("label>[name=my-date]"));
+        WebElement dateClick = driver.findElement(By.xpath("//label/*[@name='my-date']"));
+        dateClick.click();
 
 
     }
 
-    @AfterMethod
-    public void tearDown() {
+    /*@AfterMethod
+   public void tearDown() {
         driver.quit();
-    }
+    }*/
 }
